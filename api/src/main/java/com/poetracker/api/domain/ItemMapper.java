@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 public class ItemMapper {
 
     public ItemDTO toDTO(Item item){
-        ItemDTO dto = new ItemDTO();
-        dto.setId(item.getId());
-        dto.setTitle(item.getTitle());
-        dto.setUrl(item.getUrl());
-        dto.setCreatedAt(item.getCreatedAt());
-        return dto;
+        return new ItemDTO(
+                item.getId(),
+                item.getTitle(),
+                item.getUrl(),
+                item.getCreatedAt()
+        );
     }
 }

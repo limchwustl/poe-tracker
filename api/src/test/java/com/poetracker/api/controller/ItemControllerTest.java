@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -19,7 +20,12 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.hasSize;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -80,6 +86,24 @@ class ItemControllerTest {
                 .andExpect(jsonPath("$.isLast", CoreMatchers.equalTo(isLast)))
                 .andExpect(jsonPath("$.hasNext", CoreMatchers.equalTo(hasNext)))
                 .andExpect(jsonPath("$.hasPrevious", CoreMatchers.equalTo(hasPrevious)));
+    }
+
+    @Test
+    void shouldCreateItemSuccessfully() throws Exception {
+        this.mvc.perform(
+                        post("/api/items")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content("""
+            {
+                "title": "SivaLabs Blog",
+                "url": "https://sivalabs.in"
+            }
+            """)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", notNullValue()))
+                .andExpect(jsonPath("$.title", is("SivaLabs Blog")))
+                .andExpect(jsonPath("$.url", is("https://sivalabs.in")));
     }
 
 }

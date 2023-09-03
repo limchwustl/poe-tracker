@@ -1,13 +1,10 @@
 package com.poetracker.api.controller;
 
-import com.poetracker.api.domain.Item;
-import com.poetracker.api.domain.ItemService;
-import com.poetracker.api.domain.ItemsDTO;
+import com.poetracker.api.domain.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +14,18 @@ import java.util.List;
 public class ItemController  {
     private final ItemService itemService;
     @GetMapping
-    public ItemsDTO getItems(@RequestParam(name = "page", defaultValue = "1") Integer page){
-        return itemService.getItems(page);
+    public ItemsDTO getItems(@RequestParam(name = "page", defaultValue = "1") Integer page,
+                             @RequestParam(name = "query", defaultValue = "") String query){
+        if (query == null || query.trim().length() == 0) {
+            return itemService.getItems(page);
+        }
+        return itemService.searchItems(query, page);
+
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ItemDTO createItem(@RequestBody @Valid CreateItemRequest request){
+    return itemService.createItem(request);
 
     }
 
