@@ -97,7 +97,14 @@ const index = () => {
       {
         queryHistory !== [] ? queryHistory.map((i)=>{
             console.log(i)
-            return <p>{i.league + " " + i.type + " " + i.item_name} </p> 
+            return  (
+
+                <React.Fragment key={i.item_name}>
+                <p>{i.league + " " + i.type + " " + i.item_name} </p> 
+            <img src="https://web.poecdn.com/gen/image/WzI1LDE0LHsiZiI6IjJESXRlbXMvQ3VycmVuY3kvQ3VycmVuY3lEdXBsaWNhdGUiLCJ3IjoxLCJoIjoxLCJzY2FsZSI6MX1d/7111e35254/CurrencyDuplicate.png" alt= "logo"/> 
+        
+                </React.Fragment>
+            )
         }) : <></>
       }
     </div>

@@ -24,6 +24,10 @@ Link{
 }
 
 form{
+  align-self: center;
   border: solid 2px grey !important;
   border-radius: 16px;
 }
+
+
+

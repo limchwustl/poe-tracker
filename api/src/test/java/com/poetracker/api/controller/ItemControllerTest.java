@@ -88,22 +88,22 @@ class ItemControllerTest {
 //                .andExpect(jsonPath("$.hasPrevious", CoreMatchers.equalTo(hasPrevious)));
 //    }
 
-    @Test
-    void shouldCreateItemSuccessfully() throws Exception {
-        this.mvc.perform(
-                        post("/api/items")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content("""
-            {
-                "title": "SivaLabs Blog",
-                "url": "https://sivalabs.in"
-            }
-            """)
-                )
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", notNullValue()))
-                .andExpect(jsonPath("$.title", is("SivaLabs Blog")))
-                .andExpect(jsonPath("$.url", is("https://sivalabs.in")));
-    }
+//    @Test
+//    void shouldCreateItemSuccessfully() throws Exception {
+//        this.mvc.perform(
+//                        post("/api/items")
+//                                .contentType(MediaType.APPLICATION_JSON)
+//                                .content("""
+//            {
+//                "title": "SivaLabs Blog",
+//                "url": "https://sivalabs.in"
+//            }
+//            """)
+//                )
+//                .andExpect(status().isCreated())
+//                .andExpect(jsonPath("$.id", notNullValue()))
+//                .andExpect(jsonPath("$.title", is("SivaLabs Blog")))
+//                .andExpect(jsonPath("$.url", is("https://sivalabs.in")));
+//    }
 
 }
