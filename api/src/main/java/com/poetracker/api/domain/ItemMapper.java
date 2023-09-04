@@ -8,8 +8,9 @@ public class ItemMapper {
     public ItemDTO toDTO(Item item){
         return new ItemDTO(
                 item.getId(),
-                item.getTitle(),
-                item.getUrl(),
+                item.getLeague(),
+                item.getType(),
+                item.getItem_name(),
                 item.getCreatedAt()
         );
     }

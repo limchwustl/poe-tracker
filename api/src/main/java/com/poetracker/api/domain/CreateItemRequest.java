@@ -7,8 +7,10 @@ import lombok.Setter;
 @Setter
 @Getter
 public class CreateItemRequest {
-    @NotEmpty(message = "Title should not be empty")
-    private String title;
-    @NotEmpty(message = "URL should not be empty")
-    private String url;
+    @NotEmpty(message = "League should not be empty")
+    private String league;
+    @NotEmpty(message = "Type should not be empty")
+    private String type;
+    @NotEmpty(message = "ItemName should not be empty")
+    private String item_name;
 }

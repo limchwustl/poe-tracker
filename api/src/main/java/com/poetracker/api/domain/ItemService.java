@@ -33,7 +33,7 @@ public class ItemService {
     }
 
     public ItemDTO createItem(CreateItemRequest request){
-        Item item = new Item(null, request.getTitle(), request.getUrl(), Instant.now());
+        Item item = new Item(null, request.getLeague(), request.getType(), request.getItem_name(), Instant.now());
         Item savedItem = repository.save(item);
         return itemMapper.toDTO(savedItem);
     }

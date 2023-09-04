@@ -20,8 +20,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itm_id_seq_gen")
     private Long id;
     @Column(nullable = false)
-    private String title;
+    private String league;
     @Column(nullable = false)
-    private String url;
+    private String type;
+    @Column(nullable = false)
+    private String item_name;
     private Instant createdAt;
 }

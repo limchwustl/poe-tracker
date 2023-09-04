@@ -7,16 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemDTO {
-
     private Long id;
-
-    private String title;
-
-    private String url;
+    private String league;
+    private String type;
+    private String item_name;
     private Instant createdAt;
 }
